@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Bachelorarbeit To-Do Liste</title>
+	<style>
+		.Liste {border-color: black;
+			border-width: 2px;
+			border-style: solid;
+			padding:6pt;
+			width: 402px;
+			background-color: #FFCC00;
+			font-family: Helvetica;}
+		.ungerade {font-weight: bold; 
+			background-color: darkorange;}
+		.gerade {color: #000000; 
+			font-weight: bold; 
+			background-color: orangered;}
+	</style>
+	<script>
+		var Aufgaben = [];
+		var unchecked = [];
+		var index = 0;
+		
+		function add(){
+			if (index%2 == 0) {
+				var css_class = "gerade";
+			}
+			else {
+				var css_class = "ungerade";
+			}
+			var span = "<span class=" + css_class + ">";
+			var input = "<input type=checkbox id=" + index + " class=" + css_class + ">";
+			var label = "<label for=" + index + " class=" + css_class + "> ";
+			
+			Aufgaben[index] = span + input + label + document.ToDoListe.neueAufgabe.value + "</label></span>";
+			unchecked.push(index);
+			index++;
+			
+			document.getElementById("Aufgaben").innerHTML = display(unchecked);
+			document.getElementById("textFeld").value = ""
+			return false;
+		}
+		
+		function remove(){
+			var entfernen = [];
+			
+			for (var i = 0; i < unchecked.length; i++) {
+				if (document.getElementById(unchecked[i]).checked) {
+					entfernen.push(unchecked[i]);
+				}
+			}
+			
+			for (var i = 0; i < unchecked.length; i++) {
+				for (var j = 0; j < entfernen.length; j++) {
+					if (unchecked[i] === entfernen[j]){
+						unchecked.splice(i,1);
+					}
+				}
+			}
+			
+			if (unchecked.length == 0) {
+				document.getElementById("Aufgaben").innerHTML = "Glückwunsch, gerade keine Aufgaben!<br>"
+			} 
+			else {
+				document.getElementById("Aufgaben").innerHTML = display(unchecked);
+			}
+			return false;
+		}
+		
+		function display(unchecked) {
+			var Liste = "";
+			
+			for ( i = 0; i < unchecked.length; i++) {
+				Liste = Liste + Aufgaben[unchecked[i]] + "<br>";
+			}
+			return Liste;
+		}
+		
+	</script>
+</head>
+<body>
+	<h2>Bachelorarbeit To-Do Liste</h2>
+	<form name="ToDoListe" action="" method="GET" onSubmit="return add();" onReset="return remove();">
+		<div class="Liste">
+			<span id="Aufgaben">Hier könnte Ihre Werbung stehen!<br></span>
+		</div><br>
+		<label for="neueAufgabe">Gib eine neue Aufgabe ein:</label><br>
+		<input id="textFeld" type="text" size="55" name="neueAufgabe"><br><br>
+		<input type="submit" value="Hinzuf&uuml;gen">
+		<input type="reset" value="Markierte entfernen">
+	</form> <p>
+</body>
+</html>
