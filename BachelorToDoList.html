@@ -2,19 +2,20 @@
 <html>
 <head>
 	<title>Bachelorarbeit To-Do Liste</title>
-	
 	<style>
 		.Liste {border-color: black;
-				border-width: 2px;
-				border-style: solid;
-				padding:6pt;
-				width: 402px;
-				background-color: #FFCC00;
-				font-family: Helvetica;}
-		.ungerade {font-weight: bold; background-color: darkorange;}
-		.gerade {color: #000000; font-weight: bold; background-color: orangered;}
+			border-width: 2px;
+			border-style: solid;
+			padding:6pt;
+			width: 402px;
+			background-color: #FFCC00;
+			font-family: Helvetica;}
+		.ungerade {font-weight: bold; 
+			background-color: darkorange;}
+		.gerade {color: #000000; 
+			font-weight: bold; 
+			background-color: orangered;}
 	</style>
-	
 	<script>
 		var Aufgaben = [];
 		var unchecked = [];
@@ -72,7 +73,6 @@
 			for ( i = 0; i < unchecked.length; i++) {
 				Liste = Liste + Aufgaben[unchecked[i]] + "<br>";
 			}
-			
 			return Liste;
 		}
 		
